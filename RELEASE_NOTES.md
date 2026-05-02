@@ -1,6 +1,6 @@
 # IQ RX Bridge — Release Notes
 
-## v1.0.0 — first stable (2026-05-02)
+## v1.0.0 — stable (2026-05-02)
 
 Promoted out of beta. Sound-card IQ feeder for QMAP wideband Q65,
 with optional FunCube Dongle Pro+ V1/V2 USB-HID CAT control. The
