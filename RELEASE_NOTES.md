@@ -1,5 +1,25 @@
 # Malachite RX Bridge — Release Notes
 
+## v0.99.1 — multi-instance support (multi-band ops) (2026-05-02)
+
+Run two sound-card-IQ bridges side-by-side — different sound cards,
+different WSJT-X / QMAP instances, no shared state. Especially
+useful when one Malachite-DSP feeds 2 m and a second sound-card IQ
+source (FlexRadio virtual cable, FunCube Dongle Pro+, etc.) feeds
+70 cm in the same shack.
+
+- New `--instance <name>` CLI flag namespaces the INI file, window
+  title, and taskbar entry. `malachite-rx-bridge.exe --instance fcd`
+  reads/writes `Malachite RX Bridge - fcd.ini`.
+- New **Settings → "Linrad TCP port"** + **"Linrad UDP port"**
+  spinboxes (defaults 49812 / 50004). Increment per bridge instance
+  for multi-QMAP setups. CLI: `--linrad-tcp-port`,
+  `--linrad-udp-port`. Take effect on next launch.
+
+See RTL-SDR v0.99.8 notes for a full multi-instance walkthrough.
+
+Drop-in upgrade from v0.99.0.
+
 ## v0.99.0 — first beta (2026-05-02)
 
 First beta release. Primary target: **Malachite SDR** family (the

@@ -17,12 +17,27 @@ Author: **Andreas Junge, N6NU** &lt;<n6nu@arrl.net>&gt;.
 
 ---
 
-## Latest release — v0.99.0 (first beta)
+## Latest release — v0.99.1 (multi-instance)
 
 | Variant | Download |
 |---|---|
-| **Windows 10 / 11** (installer) | **[malachite-rx-bridge-0.99.0-setup.exe](malachite-rx-bridge-0.99.0-setup.exe)** |
-| **Windows 10 / 11** (portable zip — recommended) | **[malachite-rx-bridge-0.99.0-win11.zip](malachite-rx-bridge-0.99.0-win11.zip)** |
+| **Windows 10 / 11** (installer) | **[malachite-rx-bridge-0.99.1-setup.exe](malachite-rx-bridge-0.99.1-setup.exe)** |
+| **Windows 10 / 11** (portable zip — recommended) | **[malachite-rx-bridge-0.99.1-win11.zip](malachite-rx-bridge-0.99.1-win11.zip)** |
+
+What's new in v0.99.1 — multi-instance support:
+
+- Run two sound-card-IQ bridges side-by-side — different sound
+  cards, different WSJT-X / QMAP instances, no shared state.
+  Especially handy when one Malachite-DSP feeds 2 m and a second
+  sound-card source (FlexRadio virtual cable, FunCube Dongle Pro+,
+  generic IF tap, etc.) feeds 70 cm in the same shack.
+- New `--instance <name>` CLI flag namespaces the INI / window title.
+- New **Settings → "Linrad TCP port"** / **"Linrad UDP port"** rows.
+- See RELEASE_NOTES.md for a full multi-instance walkthrough.
+
+Drop-in upgrade from v0.99.0.
+
+---
 
 The portable zip is the recommended download for first-time testers
 — self-contained, no installer, no admin rights, no DLL deployment
