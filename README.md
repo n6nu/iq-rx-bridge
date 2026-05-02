@@ -18,9 +18,19 @@ Author: **Andreas Junge, N6NU** &lt;<n6nu@arrl.net>&gt;.
 
 ---
 
-## Latest release — v0.99.5 (finer FCD gain trim)
+## Latest release — v1.0.0 (first stable)
 
-Download: **[iq-rx-bridge-0.99.5-setup.exe](iq-rx-bridge-0.99.5-setup.exe)**
+Download: **[iq-rx-bridge-1.0.0-setup.exe](iq-rx-bridge-1.0.0-setup.exe)**
+
+Promoted out of beta. Sound-card IQ feeder for QMAP wideband Q65,
+with optional FunCube Dongle Pro+ V1/V2 USB-HID CAT control. The
+FCD path was bench-verified end-to-end against WWV (10 MHz tone)
+for frequency calibration; 2 m EME signals exercised the full
+gain chain (LNA / LNA enhance / mixer / IF stages 1-3 / IF
+filter / bias-T) as designed. The 0.99.x line ends here.
+
+No code changes vs v0.99.5 — v1.0.0 is a label promotion plus a
+rebuild against the latest bridge-core.
 
 Supported IQ sources:
 

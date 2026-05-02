@@ -1,5 +1,20 @@
 # IQ RX Bridge — Release Notes
 
+## v1.0.0 — first stable (2026-05-02)
+
+Promoted out of beta. Sound-card IQ feeder for QMAP wideband Q65,
+with optional FunCube Dongle Pro+ V1/V2 USB-HID CAT control. The
+FCD path was bench-verified end-to-end against WWV (10 MHz tone)
+for frequency calibration; 2 m EME signals exercise the full gain
+chain (LNA / LNA enhance / mixer / IF stages 1-3 / IF filter /
+bias-T) as designed. The 0.99.x line ends here; future development
+opens a 1.x series.
+
+No code changes vs v0.99.5 — v1.0.0 is a label promotion plus a
+rebuild against the latest bridge-core (waterfall span match).
+
+Drop-in upgrade from v0.99.5.
+
 ## v0.99.5 — finer FCD gain trim (2026-05-02)
 
 Adds three more HID-controlled gain knobs to the FunCube Dongle Pro+
