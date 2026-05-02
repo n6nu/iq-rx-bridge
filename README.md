@@ -18,9 +18,9 @@ Author: **Andreas Junge, N6NU** &lt;<n6nu@arrl.net>&gt;.
 
 ---
 
-## Latest release — v0.99.4 (FunCube CAT control)
+## Latest release — v0.99.5 (finer FCD gain trim)
 
-Download: **[iq-rx-bridge-0.99.4-setup.exe](iq-rx-bridge-0.99.4-setup.exe)**
+Download: **[iq-rx-bridge-0.99.5-setup.exe](iq-rx-bridge-0.99.5-setup.exe)**
 
 Supported IQ sources:
 
@@ -33,6 +33,19 @@ Supported IQ sources:
 | K3 KXV3A → external mixer → line-in | None | sound-card-dependent |
 | SDR Console / SDR# IQ → virtual cable | None | sound-card-dependent |
 | Generic IF tap into any sound card | None | sound-card-dependent |
+
+### What's new in v0.99.5 (2026-05-02) — finer FCD gain trim
+
+Three more HID-controlled gain knobs to round out the FCD control
+surface:
+
+- **LNA enhance** — 0 / +3 / +6 / +9 dB on top of the LNA on/off
+- **IF gain stage 2** — 0 / +3 / +6 / +9 dB after stage 1
+- **IF gain stage 3** — 0 / +3 / +6 / +9 dB after stage 2
+
+Total IF gain across stages 1–3 now reaches 39 dB in the bridge
+UI. Combined with the LNA / LNA-enhance / mixer paths this matches
+the gain coverage of AMSAT-UK's FCD Control app.
 
 ### What's new in v0.99.4 (2026-05-02) — FCD gain & filter controls
 

@@ -1,5 +1,35 @@
 # IQ RX Bridge — Release Notes
 
+## v0.99.5 — finer FCD gain trim (2026-05-02)
+
+Adds three more HID-controlled gain knobs to the FunCube Dongle Pro+
+controls panel, for finer EME gain tuning between the LNA on/off and
+the IF stage 1 step:
+
+- **LNA enhance** — 0 / +3 / +6 / +9 dB (HID command 111). Sits on
+  top of the main LNA on/off; default 0. Useful when the main LNA
+  bit is on but you want a touch more front-end gain than the bare
+  on/off provides.
+- **IF gain stage 2** — 0 / +3 / +6 / +9 dB (HID command 120).
+  Stacked after stage 1; default 0. Reach for this when stage 1 is
+  already at +21 dB and you still need more gain.
+- **IF gain stage 3** — 0 / +3 / +6 / +9 dB (HID command 121).
+  Stacked after stage 2; default 0.
+
+Maximum total IF gain across stages 1–3 is now 21 + 9 + 9 = 39 dB
+in the bridge UI (firmware can do more via stages 4–6, not currently
+exposed). Combined with the LNA / LNA-enhance / mixer paths, this
+matches the gain coverage of AMSAT-UK's FCD Control app.
+
+INI keys: `funcube/lna_enhance`, `funcube/if_gain2`, `funcube/if_gain3`.
+Default values match the FCD's "as-shipped" state, so existing
+v0.99.4 INIs come up unchanged after upgrade.
+
+reapplyGains() now pushes 8 HID round-trips per retune (was 5);
+still well under 50 ms total round-trip time, no perceptible delay.
+
+Drop-in upgrade from v0.99.4.
+
 ## v0.99.4 — FCD gain & filter controls (2026-05-02)
 
 Surfaces the FunCube Dongle Pro+ gain and filter HID commands in
