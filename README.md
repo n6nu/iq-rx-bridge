@@ -1,151 +1,128 @@
-# Malachite RX Bridge — Beta Releases
+# IQ RX Bridge — Beta Releases
 
-Windows installer downloads for the **Malachite RX Bridge** — a Qt6
-C++ application that pumps the IQ baseband stream from a Malachite
-SDR (or any USB-IQ-soundcard SDR — FlexRadio, K3 KXV3A → external
-quadrature mixer, SDR Console / SDR# routing IQ to a virtual cable,
-etc.) into **QMAP** for wideband Q65 decode.
+> **Formerly known as `malachite-rx-bridge`.** Renamed to reflect the
+> broader scope: this app feeds QMAP from any radio whose IQ baseband
+> comes out as a USB sound card — Malachite-DSP/DSP2/DSP3, FunCube
+> Dongle Pro+, FlexRadio (DAX-IQ → virtual cable), generic IF tap, and
+> so on. The legacy `malachite-rx-bridge-0.99.1-*` binaries are still
+> available below if you need to roll back, but new installs should
+> use the latest `iq-rx-bridge-*-setup.exe`.
 
-The "anything but Linrad" bridge: Linrad has been the standard
-sound-card IQ → MAP65 / QMAP UDP feeder for decades and is deeply
-capable, but its UI is notoriously arcane. This bridge ships the
-same LinradServer-compatible wire format with a modern Qt6 GUI —
-same look and feel as the sibling SDR bridges (HackRF / RTL-SDR /
-SDRplay / AirSpy).
+Windows installer downloads for the **IQ RX Bridge** — a Qt6 C++
+application that pumps stereo IQ from a USB sound card into QMAP for
+wideband Q65 / FT8 reception. Sibling to the HackRF / RTL-SDR /
+SDRplay / AirSpy native-USB RX bridges, but for radios that expose IQ
+on a USB Audio Class device instead of a vendor-specific USB driver.
 
 Author: **Andreas Junge, N6NU** &lt;<n6nu@arrl.net>&gt;.
 
 ---
 
-## Latest release — v0.99.1 (multi-instance)
+## Latest release — v0.99.4 (FunCube CAT control)
 
-| Variant | Download |
-|---|---|
-| **Windows 10 / 11** (installer) | **[malachite-rx-bridge-0.99.1-setup.exe](malachite-rx-bridge-0.99.1-setup.exe)** |
-| **Windows 10 / 11** (portable zip — recommended) | **[malachite-rx-bridge-0.99.1-win11.zip](malachite-rx-bridge-0.99.1-win11.zip)** |
+Download: **[iq-rx-bridge-0.99.4-setup.exe](iq-rx-bridge-0.99.4-setup.exe)**
 
-What's new in v0.99.1 — multi-instance support:
+Supported IQ sources:
 
-- Run two sound-card-IQ bridges side-by-side — different sound
-  cards, different WSJT-X / QMAP instances, no shared state.
-  Especially handy when one Malachite-DSP feeds 2 m and a second
-  sound-card source (FlexRadio virtual cable, FunCube Dongle Pro+,
-  generic IF tap, etc.) feeds 70 cm in the same shack.
-- New `--instance <name>` CLI flag namespaces the INI / window title.
-- New **Settings → "Linrad TCP port"** / **"Linrad UDP port"** rows.
-- See RELEASE_NOTES.md for a full multi-instance walkthrough.
+| Source | CAT support | Sample rate |
+|---|---|---|
+| Malachite-DSP / DSP2 | None — operator types freq | 96 / 192 kHz |
+| Malachite-DSP3 | (planned) FT-897 emulation, serial CAT | 96 / 192 kHz |
+| **FunCube Dongle Pro+ V1/V2** | **USB HID — auto-tune from WSJT-X** | up to 192 kHz |
+| FlexRadio + DAX-IQ → virtual cable | None at this layer | 48 / 96 / 192 kHz |
+| K3 KXV3A → external mixer → line-in | None | sound-card-dependent |
+| SDR Console / SDR# IQ → virtual cable | None | sound-card-dependent |
+| Generic IF tap into any sound card | None | sound-card-dependent |
 
-Drop-in upgrade from v0.99.0.
+### What's new in v0.99.4 (2026-05-02) — FCD gain & filter controls
 
----
+Settings → "FunCube Dongle Pro+ controls" group exposes the FCD's
+HID gain stages and IF filter directly:
 
-The portable zip is the recommended download for first-time testers
-— self-contained, no installer, no admin rights, no DLL deployment
-issues. The installer build is the same binary just packaged with
-Inno Setup.
+- **LNA gain** on/off (~24 dB front-end)
+- **Mixer gain** low/high (~12 dB)
+- **IF gain stage 1** 0…21 dB in 3 dB steps
+- **IF filter** 200 / 300 / 600 / 1500 / 2400 / 2800 / 4500 kHz
+- **Bias-T** 4.5 V on SMA centre conductor
 
----
+Re-applied on every retune (some FCD firmware versions reset gain
+stages on band-select swings). No more hopping back to AMSAT-UK's
+FCD Control app for everyday tuning.
 
-## What this app does
+### What's new in v0.99.3 (2026-05-02) — waterfall span fix
 
-- Opens a USB sound card as a **stereo IQ source** (L=I, R=Q).
-- Pumps int16 IQ pairs into **LinradServer** at the configured
-  sample rate (48 / 96 / 192 kHz selectable).
-- LinradServer applies the (-1)^n·conj transform that QMAP requires
-  and ships UDP packets to **127.0.0.1:50004**.
-- Spectrum / waterfall display with **Ctrl+W** to toggle off if not
-  needed.
-- Optional **WSJT-X UDP follow** (port 2237) so QMAP labels can
-  match the WSJT-X dial — off by default; most operators just type
-  the radio's tuned freq into Settings → "Manual SDR frequency".
+Built-in spectrum / waterfall display now shows the correct frequency
+span for the actual IQ rate (192 kHz on FCD Pro+ V2 instead of the
+hardcoded 2 MHz that suited HackRF / RTL-SDR).
 
-## What this app does NOT do
+### What's new in v0.99.2 (2026-05-02) — half-scaled QMAP fix
 
-- **SSB demodulation.** The Malachite (or whatever the IQ source
-  is) already does that on its end. Operators who want narrowband
-  WSJT-X decode route the radio's separate audio output to VB-Cable
-  themselves.
-- **Frequency tuning of the radio.** The Malachite has no CAT
-  surface — there is no API path from the bridge to the radio. The
-  operator turns the knob / taps the touchscreen and tells the
-  bridge what label to display via Settings → "Manual SDR
-  frequency".
-- **WSJT-X RX audio path.** This bridge is a pure QMAP feeder.
+Sample-rate mismatch between SoundCardDevice and LinradServer was
+making QMAP show signals at half their true offset from the dial.
+Root cause: SoundCardDevice silently fell back to the device's
+preferred format (192 kHz on FCD Pro+ V2) when 96 kHz wasn't
+supported, but LinradServer was still configured for 96 kHz.
+Critical fix for FCD users — get this version or later.
 
----
+### What's new in v0.99.1 (2026-05-02) — FCD PPM correction
 
-## Setup (Malachite → bridge → QMAP)
+Software PPM frequency correction for the FCD's TCXO drift.
+Critical for EME / weak-signal where the carrier needs to land
+within a few Hz of the dial.
 
-1. **Configure the Malachite for IQ output.** On the radio, open
-   the audio settings and switch the USB output mode from
-   "demodulated audio" to **"stereo IQ"**. Pick a sample rate
-   (48 / 96 / 192 kHz) — 96 kHz is the cleanest fit for QMAP's
-   wideband window.
+### What's new in v0.99.0 (2026-05-02) — first iq-rx-bridge release
 
-2. **Plug the Malachite into the PC.** Windows will see it as a
-   USB audio device. No special driver / Zadig step required —
-   it's a class-compliant USB audio device.
-
-3. **Launch the bridge.** Open Settings → "Sound-card IQ input":
-   - **Input device** = the Malachite (look for a name like
-     "USB Audio Device" or your radio's product name).
-   - **Sample rate** = match what you set on the radio.
-   - **Hardware label** = whatever you want; defaults to
-     "Malachite SDR".
-
-4. **Set the dial label.** Open Settings → tick "Manual SDR
-   frequency", enter the freq the Malachite is tuned to (e.g.
-   `144.174` MHz). Apply. Update it whenever you re-tune the
-   Malachite.
-
-5. **Launch QMAP.** Make sure it's listening on UDP 50004
-   (Settings → Network input enabled, port 50004).
-
-6. **Watch the waterfall.** If signals appear mirrored around
-   centre, open Settings and toggle **"Swap I/Q"**.
+Successor to malachite-rx-bridge v0.99.x. Adds USB-HID CAT control
+of the FunCube Dongle Pro+ V1/V2 (auto-tune from WSJT-X dial) plus
+all the multi-instance support inherited from bridge-core
+(`--instance`, Linrad TCP/UDP port spinboxes, namespaced INI).
 
 ---
 
-## Frequency control — important
+## Legacy: `malachite-rx-bridge`
 
-There is no CAT path from this bridge to the Malachite. Operators
-type the dial value into Settings → "Manual SDR frequency" so QMAP's
-waterfall axis labels match. The freq label only affects display;
-the actual signal processing is centre-relative and works correctly
-even if the label is wrong.
+The pre-rename builds remain available for testers who haven't migrated
+yet:
 
-If you're also tuning WSJT-X to match the radio, you can flip
-Settings → "Follow WSJT-X dial via UDP" and the bridge will pick up
-the dial automatically.
+- **[malachite-rx-bridge-0.99.1-setup.exe](malachite-rx-bridge-0.99.1-setup.exe)** — final malachite-branded installer
+- **[malachite-rx-bridge-0.99.1-win11.zip](malachite-rx-bridge-0.99.1-win11.zip)** — portable zip variant
 
----
-
-## SmartScreen on first launch
-
-The exe is **not code-signed**. On first launch on a fresh Windows
-machine you'll see:
-
-> Windows protected your PC.
-> Microsoft Defender SmartScreen prevented an unrecognized app from
-> starting.
-
-Click **More info → Run anyway**. One-time per binary.
+The two installers use different AppId GUIDs so they install side-by-side
+without conflict. Once you've verified iq-rx-bridge works for your setup,
+uninstall the malachite version via Windows Settings → Apps.
 
 ---
+
+## Setup with FunCube Dongle Pro+
+
+1. Plug the FCD in. Windows mounts it as a USB Audio Class device
+   (`USB Audio CODEC` / `FUNcube Dongle V2.0`) and a USB HID device.
+   No driver step needed.
+2. Launch the bridge. Settings → "Sound-card IQ input":
+   - **Input device** = the FCD
+   - **Sample rate** = 192 000 Hz (FCD Pro+ max — best for QMAP)
+   - **CAT controller** = "FunCube Dongle Pro+ V1/V2 (USB HID CAT)"
+   - Tick **"Follow WSJT-X dial via UDP (port 2237)"**
+   - Adjust **"FCD freq correction"** ppm if you've calibrated
+3. Apply, **restart the bridge** (CAT controller change takes effect
+   on next launch).
+4. Open WSJT-X. Settings → Reporting → "Accept UDP requests" on,
+   port 2237.
+5. Spin the WSJT-X dial → the FCD follows.
 
 ## Reporting
 
-Please include:
+Bug reports / decode logs to **<n6nu@arrl.net>**. Please include:
+- Radio model (FCD Pro+ V1/V2, Malachite variant, FlexRadio model, etc.)
+- Bridge log: relaunch with `iq-rx-bridge.exe --console`, reproduce,
+  copy/paste console output
+- For QMAP issues: `qmap.ini` + a wideband-waterfall screenshot
 
-- Which radio (Malachite v1 / v2 / v3 / DSP-2 / Discovery Mini, or
-  another IQ source).
-- The radio's IQ output sample rate setting.
-- A `--console` log line: `[SoundCard] opened '<device>': <rate> Hz
-  stereo, fmt=int16 ...` confirms the bridge sees the right device.
-- A `--console` log line: `[Stats] RX <pairs> in 5s ...` confirms IQ
-  is flowing through to QMAP.
-- Whether QMAP shows signal in its bottom waterfall.
+## License
 
-Reports to: <n6nu@arrl.net>.
-
-License: GPLv3 — see `LICENSE`.
+Copyright (C) 2026 **Andreas Junge, N6NU**.
+Licensed under the **GNU General Public License v3 or later** —
+see [`LICENSE`](LICENSE). Bundled third-party components — Qt 6,
+FFTW3, SoXr, libhidapi — are documented in
+[`THIRD_PARTY_LICENSES.md`](THIRD_PARTY_LICENSES.md).
+**No warranty.** Install and run at your own risk.
