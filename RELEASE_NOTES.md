@@ -1,5 +1,21 @@
 # IQ RX Bridge — Release Notes
 
+## v1.0.4 — fix Task Manager / Properties strings (2026-05-04)
+
+Cosmetic, finishes the v1.0.3 rebrand. The embedded Win32
+version-resource strings (visible in Task Manager → Details and
+in Right-click Properties → Details) were still
+`FileDescription = "Malachite RX Bridge"`,
+`InternalName = "malachite-rx-bridge"`,
+`OriginalFilename = "malachite-rx-bridge.exe"`,
+`ProductName = "Malachite RX Bridge"` — leftover from the
+`malachite-rx-bridge` era. All four updated to `IQ RX Bridge` /
+`iq-rx-bridge` / `iq-rx-bridge.exe`. CompanyName stays `N6NU`.
+
+INI compatible with v1.0.3. Drop-in upgrade. Force a re-install
+of the binary so the new exe replaces the old version-stamped
+one — Task Manager caches the FileDescription per process.
+
 ## v1.0.3 — drop the Malachite-era default label (2026-05-04)
 
 Cosmetic-only change. The default value of the **Hardware label**

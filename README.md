@@ -18,16 +18,24 @@ Author: **Andreas Junge, N6NU** &lt;<n6nu@arrl.net>&gt;.
 
 ---
 
-## Latest release — v1.0.3 (stable)
+## Latest release — v1.0.4 (stable)
 
-Download: **[iq-rx-bridge-1.0.3-setup.exe](iq-rx-bridge-1.0.3-setup.exe)**
+Download: **[iq-rx-bridge-1.0.4-setup.exe](iq-rx-bridge-1.0.4-setup.exe)**
 
-Cosmetic cleanup of the **default Hardware label** shown on the
-GUI status panel and in the QMAP / Linrad header. Was "Malachite
-SDR" (leftover from the `malachite-rx-bridge` era), now **"N6NU
-IQ RX Bridge"**. One-shot INI migration on launch: existing
-installs with the old default get bumped to the new one
-automatically; any user-customised label is preserved.
+Finishes the cosmetic rebrand. **Windows Task Manager → Details**
+shows a process's `FileDescription`, not its filename — and that
+field was still `"Malachite RX Bridge"` (a leftover from the
+`malachite-rx-bridge` era), even after v1.0.3 fixed the GUI
+label. Plus `InternalName`, `OriginalFilename`, and
+`ProductName`. All four updated to **`IQ RX Bridge`** /
+**`iq-rx-bridge`** / **`iq-rx-bridge.exe`**. CompanyName stays
+`N6NU`. Right-click → Properties → Details, and Task Manager,
+now show the bridge consistently.
+
+Rolls up v1.0.3's GUI label rebrand: default **Hardware label**
+is now **"N6NU IQ RX Bridge"** with a one-shot INI migration
+that upgrades existing installs from the old `"Malachite SDR"`
+default while preserving any user-customised value.
 
 Rolls up the v1.0.2 audio-path fix: **IQ→SSB demodulation
 happens inside the bridge** so WSJT-X gets demodulated audio
@@ -51,6 +59,22 @@ Supported IQ sources:
 | K3 KXV3A → external mixer → line-in | None | sound-card-dependent |
 | SDR Console / SDR# IQ → virtual cable | None | sound-card-dependent |
 | Generic IF tap into any sound card | None | sound-card-dependent |
+
+### What's new in v1.0.4 (2026-05-04) — rebrand the Win32 version-resource strings
+
+Cosmetic, finishes the v1.0.3 rebrand. The Windows Task Manager
+"Description" column and the Right-click → Properties → Details
+strings come from the embedded Win32 version resource, not from
+the exe filename. The bridge's resource block still had:
+
+- `FileDescription = "Malachite RX Bridge"`
+- `InternalName = "malachite-rx-bridge"`
+- `OriginalFilename = "malachite-rx-bridge.exe"`
+- `ProductName = "Malachite RX Bridge"`
+
+All four updated to `IQ RX Bridge` / `iq-rx-bridge` /
+`iq-rx-bridge.exe`. `CompanyName` stays `N6NU`. INI compatible
+with v1.0.3.
 
 ### What's new in v1.0.3 (2026-05-04) — drop the Malachite-era default label
 
