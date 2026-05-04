@@ -1,5 +1,52 @@
 # IQ RX Bridge — Release Notes
 
+## v1.0.2 — IQ→SSB demod path for IQ-only sources (FunCube, IF tap) (2026-05-04)
+
+Closes a gap exposed during FunCube Dongle Pro+ bench-test: the FCD
+streams IQ only, with no separate demodulated-audio sound device. The
+bridge previously had no audio output path (assumed the radio did its
+own demod, true for Malachite-DSP, false for FCD), so WSJT-X had no
+audio to decode.
+
+- New SSB demod stage: same `SsbDemodulator` (Hilbert phaser, USB/LSB
+  selectable) as `hackrf-rx-bridge` / `rtlsdr-rx-bridge`, fed the int16
+  IQ from the sound card at the actual negotiated rate, output 48 kHz
+  mono audio to the existing audio bridge.
+- New Settings checkbox: **"Demodulate IQ → audio (feed VB-Cable for
+  WSJT-X)"** — INI key `soundcard/demod_to_audio`, default ON.
+- New CLI flag: `--no-demod` for Malachite users who already have a
+  separate demodulated-audio device.
+- New CLI flag: `--rx-device <name>` to pick the audio output device
+  (defaults to VB-Cable Line 1 / system default).
+- Demod mode follows WSJT-X UDP `modeChanged` and CAT `\set_mode`
+  (USB/LSB/PKT*). On startup the saved `radio/mode` is applied.
+- Live device swap: changing the audio output device in Settings
+  hot-swaps without bridge restart.
+
+INI compatible with v1.0.1. Drop-in upgrade. **For FCD users:** in
+WSJT-X set Sound input → VB-Cable Line 1 (or whichever device the
+bridge is feeding) and you should see signals decode immediately.
+
+## v1.0.1 — opt-in CAT server for WSJT-X Doppler tracking (2026-05-04)
+
+Adds the same opt-in CAT pattern as the rest of the family. With
+WSJT-X **Rig = Hamlib NET rigctl** at `127.0.0.1:4540`, Doppler
+tracking commands corrected freq directly to the bridge.
+
+- Rigctld TCP server on port **4540**, default OFF.
+- Toggle in Settings → CAT server (or `--cat`). Restart bridge.
+- Auto-detect UDP mute when a CAT client is connected.
+- Live source indicator in window title.
+- PTT signal intentionally unwired — this bridge has no TX path
+  and the IQ feed continues during transmit.
+- Note: the Settings panel now has TWO "CAT" rows — the existing
+  **CAT controller** (radio-side: FunCube HID, tunes the dongle)
+  and the new **CAT server** (WSJT-X-side: rigctld TCP, receives
+  Doppler-corrected freq). They cooperate: WSJT-X → CAT server →
+  bridge → CAT controller → FCD.
+
+INI compatible with v1.0.0. Drop-in upgrade.
+
 ## v1.0.0 — stable (2026-05-02)
 
 Promoted out of beta. Sound-card IQ feeder for QMAP wideband Q65,

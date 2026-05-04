@@ -18,19 +18,21 @@ Author: **Andreas Junge, N6NU** &lt;<n6nu@arrl.net>&gt;.
 
 ---
 
-## Latest release — v1.0.0 (stable)
+## Latest release — v1.0.2 (stable)
 
-Download: **[iq-rx-bridge-1.0.0-setup.exe](iq-rx-bridge-1.0.0-setup.exe)**
+Download: **[iq-rx-bridge-1.0.2-setup.exe](iq-rx-bridge-1.0.2-setup.exe)**
 
-Promoted out of beta. Sound-card IQ feeder for QMAP wideband Q65,
-with optional FunCube Dongle Pro+ V1/V2 USB-HID CAT control. The
-FCD path was bench-verified end-to-end against WWV (10 MHz tone)
-for frequency calibration; 2 m EME signals exercised the full
-gain chain (LNA / LNA enhance / mixer / IF stages 1-3 / IF
-filter / bias-T) as designed. The 0.99.x line ends here.
+IQ→SSB demodulation now happens inside the bridge, so **WSJT-X
+gets demodulated audio directly via VB-Cable** — no second sound
+device needed for FunCube Pro+ / FlexRadio DAX-IQ / generic IF
+taps. Demod mode (USB / LSB) follows WSJT-X's reported mode and
+CAT `\set_mode`. Toggle in Settings if your radio already
+provides its own SSB audio (Malachite-DSP). Verified decoding
+FT8 with FCD Pro+ on N6NU's bench.
 
-No code changes vs v0.99.5 — v1.0.0 is a label promotion plus a
-rebuild against the latest bridge-core.
+This release also rolls up **v1.0.1's opt-in rigctld CAT server**
+on TCP 4540 — point WSJT-X at *Hamlib NET rigctl, 127.0.0.1:4540*
+to get Doppler-corrected dial freq driving the bridge directly.
 
 Supported IQ sources:
 
@@ -43,6 +45,48 @@ Supported IQ sources:
 | K3 KXV3A → external mixer → line-in | None | sound-card-dependent |
 | SDR Console / SDR# IQ → virtual cable | None | sound-card-dependent |
 | Generic IF tap into any sound card | None | sound-card-dependent |
+
+### What's new in v1.0.2 (2026-05-04) — IQ→SSB demod inside the bridge
+
+The bridge now demodulates the IQ stream and pushes 48 kHz mono
+SSB audio to the configured RX audio device (typically VB-Cable
+Line 1) so WSJT-X can decode FT8/FT4/JT9 directly. Closes a gap
+discovered during FunCube Pro+ bench-test (v1.0.1 had no audio
+output, assuming the radio produced its own demodulated audio —
+true for Malachite-DSP, false for FCD).
+
+- New Settings checkbox: **"Demodulate IQ → audio (feed VB-Cable
+  for WSJT-X)"** — default ON.
+- New CLI flags `--no-demod` (Malachite users with their own
+  audio device) and `--rx-device <name>` (audio output picker).
+- Demod mode auto-follows WSJT-X mode (USB / LSB / PKTUSB / PKTLSB).
+
+### What's new in v1.0.1 (2026-05-04) — opt-in rigctld CAT server
+
+Adds the same opt-in CAT pattern as the rest of the family.
+**This was a transitional internal release — v1.0.2 supersedes it
+end-to-end and includes everything below**:
+
+- Rigctld TCP server on port **4540**, default OFF. Toggle in
+  Settings → CAT server (or `--cat`). Restart bridge.
+- WSJT-X with `Rig = Hamlib NET rigctl` at `127.0.0.1:4540`
+  drives Doppler-corrected dial freq directly into the bridge.
+- Auto-detect UDP mute when a CAT client is connected.
+- Live source indicator in window title.
+- Note: the Settings panel now has TWO "CAT" rows — the existing
+  **CAT controller** (radio-side: FunCube HID, tunes the dongle)
+  and the new **CAT server** (WSJT-X-side: rigctld TCP). They
+  cooperate: WSJT-X → CAT server → bridge → CAT controller → FCD.
+
+### What's new in v1.0.0 (2026-05-02) — first stable
+
+Promoted out of beta. Sound-card IQ feeder for QMAP wideband Q65,
+with optional FunCube Dongle Pro+ V1/V2 USB-HID CAT control. The
+FCD path was bench-verified end-to-end against WWV (10 MHz tone)
+for frequency calibration; 2 m EME signals exercised the full
+gain chain (LNA / LNA enhance / mixer / IF stages 1-3 / IF
+filter / bias-T) as designed. No code changes vs v0.99.5 — label
+promotion plus a rebuild against the latest bridge-core.
 
 ### What's new in v0.99.5 (2026-05-02) — finer FCD gain trim
 
