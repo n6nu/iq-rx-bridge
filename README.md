@@ -18,21 +18,27 @@ Author: **Andreas Junge, N6NU** &lt;<n6nu@arrl.net>&gt;.
 
 ---
 
-## Latest release — v1.0.2 (stable)
+## Latest release — v1.0.3 (stable)
 
-Download: **[iq-rx-bridge-1.0.2-setup.exe](iq-rx-bridge-1.0.2-setup.exe)**
+Download: **[iq-rx-bridge-1.0.3-setup.exe](iq-rx-bridge-1.0.3-setup.exe)**
 
-IQ→SSB demodulation now happens inside the bridge, so **WSJT-X
-gets demodulated audio directly via VB-Cable** — no second sound
-device needed for FunCube Pro+ / FlexRadio DAX-IQ / generic IF
-taps. Demod mode (USB / LSB) follows WSJT-X's reported mode and
-CAT `\set_mode`. Toggle in Settings if your radio already
-provides its own SSB audio (Malachite-DSP). Verified decoding
-FT8 with FCD Pro+ on N6NU's bench.
+Cosmetic cleanup of the **default Hardware label** shown on the
+GUI status panel and in the QMAP / Linrad header. Was "Malachite
+SDR" (leftover from the `malachite-rx-bridge` era), now **"N6NU
+IQ RX Bridge"**. One-shot INI migration on launch: existing
+installs with the old default get bumped to the new one
+automatically; any user-customised label is preserved.
 
-This release also rolls up **v1.0.1's opt-in rigctld CAT server**
-on TCP 4540 — point WSJT-X at *Hamlib NET rigctl, 127.0.0.1:4540*
-to get Doppler-corrected dial freq driving the bridge directly.
+Rolls up the v1.0.2 audio-path fix: **IQ→SSB demodulation
+happens inside the bridge** so WSJT-X gets demodulated audio
+directly via VB-Cable — no second sound device needed for
+FunCube Pro+ / FlexRadio DAX-IQ / generic IF taps. Demod mode
+(USB / LSB) follows WSJT-X mode and CAT `\set_mode`. Toggle in
+Settings if your radio already provides its own SSB audio.
+
+Plus the v1.0.1 **opt-in rigctld CAT server** on TCP 4540 —
+point WSJT-X at *Hamlib NET rigctl, 127.0.0.1:4540* to get
+Doppler-corrected dial freq driving the bridge directly.
 
 Supported IQ sources:
 
@@ -45,6 +51,19 @@ Supported IQ sources:
 | K3 KXV3A → external mixer → line-in | None | sound-card-dependent |
 | SDR Console / SDR# IQ → virtual cable | None | sound-card-dependent |
 | Generic IF tap into any sound card | None | sound-card-dependent |
+
+### What's new in v1.0.3 (2026-05-04) — drop the Malachite-era default label
+
+Cosmetic only. The **Hardware label** default (shown on the GUI
+status panel + in the QMAP / Linrad header) was `"Malachite SDR"`
+— a leftover from when this app was called `malachite-rx-bridge`.
+Confusing for FunCube / FlexRadio / IF-tap users. Now defaults to
+`"N6NU IQ RX Bridge"`.
+
+A one-shot INI migration runs on first launch: if your existing
+`soundcard/hw_label` is still the old default, it's rewritten.
+Any user-customised label (e.g. `"FunCube Pro+"`) is preserved
+untouched. INI compatible with v1.0.2.
 
 ### What's new in v1.0.2 (2026-05-04) — IQ→SSB demod inside the bridge
 

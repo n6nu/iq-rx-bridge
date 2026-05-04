@@ -1,5 +1,23 @@
 # IQ RX Bridge — Release Notes
 
+## v1.0.3 — drop the Malachite-era default label (2026-05-04)
+
+Cosmetic-only change. The default value of the **Hardware label**
+(shown on the GUI status panel + in the QMAP / Linrad header) was
+"Malachite SDR" — a leftover from when this app was called
+`malachite-rx-bridge`. Confusing for FunCube / FlexRadio / generic
+IF-tap users.
+
+- Default is now **"N6NU IQ RX Bridge"**.
+- One-shot INI migration on launch: if your existing
+  `soundcard/hw_label` is still the literal string `"Malachite
+  SDR"`, the bridge rewrites it to the new default. Any
+  user-customised label (e.g. "FunCube Pro+", "Malachite-DSP2") is
+  preserved untouched.
+- Tooltip updated to suggest naming the IQ source.
+
+INI compatible with v1.0.2. Drop-in upgrade.
+
 ## v1.0.2 — IQ→SSB demod path for IQ-only sources (FunCube, IF tap) (2026-05-04)
 
 Closes a gap exposed during FunCube Dongle Pro+ bench-test: the FCD
