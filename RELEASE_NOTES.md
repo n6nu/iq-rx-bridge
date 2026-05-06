@@ -1,5 +1,21 @@
 # IQ RX Bridge — Release Notes
 
+## v1.1.1 — capability-gated IQ rate combo (2026-05-05)
+
+Tightens the IQ-rate combo for sound-card-IQ sources. Combo now hides
+rates above the sound card's actual negotiated sample rate -- e.g. on
+a FunCube Pro+ V2 (hardware-locked 192 kHz) the combo offers 96 and
+128 and 192 kHz; 256 is no longer selectable. Prevents the upsample
+trap where the bridge would resample 192 -> 256 with a fractional
+ratio, leaving QMAP showing signals offset by the rate-ratio
+mismatch.
+
+If your saved INI rate has been removed from the supported set
+(switched from a wider source to FunCube), the combo falls back to
+96 kHz on next launch.
+
+Drop-in upgrade from v1.1.0. No INI changes.
+
 ## v1.1.0 — UI refresh: fixed window, Settings menu, Linrad rate readout (2026-05-05)
 
 User-visible polish across the bridge UI; no behavioural changes on

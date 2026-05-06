@@ -18,7 +18,19 @@ Author: **Andreas Junge, N6NU** &lt;<n6nu@arrl.net>&gt;.
 
 ---
 
-## Latest release — v1.1.0
+## Latest release — v1.1.1
+
+Download: **[iq-rx-bridge-1.1.1-setup.exe](https://github.com/n6nu/iq-rx-bridge/releases/latest/download/iq-rx-bridge-1.1.1-setup.exe)**
+
+What's new in v1.1.1 (2026-05-05) -- the IQ-rate combo now hides
+rates above the sound card's actual negotiated sample rate. On a
+FunCube Pro+ V2 (192 kHz hardware), 256 kHz is no longer selectable
+because asking for it would force the bridge to upsample 192 -> 256
+with a fractional ratio, mismatching QMAP's frequency display.
+Drop-in upgrade.
+
+---
+### Previous release — v1.1.0
 
 Download: **[iq-rx-bridge-1.1.0-setup.exe](https://github.com/n6nu/iq-rx-bridge/releases/latest/download/iq-rx-bridge-1.1.0-setup.exe)**
 
@@ -28,8 +40,6 @@ fixed-size 400x640. Settings moved from a button to a top-level
 State grid. Settings dialog reflowed side-by-side, with a new
 **Linrad IQ rate** combo (defaults to "96 kHz (QMAP Default)").
 Drop-in upgrade; 96 kHz wire format unchanged.
-
----
 ### Previous release — v1.0.4 (stable)
 
 Download: **[iq-rx-bridge-1.0.4-setup.exe](iq-rx-bridge-1.0.4-setup.exe)**
