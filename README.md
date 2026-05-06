@@ -18,7 +18,18 @@ Author: **Andreas Junge, N6NU** &lt;<n6nu@arrl.net>&gt;.
 
 ---
 
-## Latest release — v1.1.1
+## Latest release — v1.1.2
+
+Download: **[iq-rx-bridge-1.1.2-setup.exe](https://github.com/n6nu/iq-rx-bridge/releases/latest/download/iq-rx-bridge-1.1.2-setup.exe)**
+
+What's new in v1.1.2 (2026-05-05) -- DC blocker for zero-IF
+receivers. New "DC blocker (zero-IF spike removal)" checkbox in
+Settings (default ON) chews through the LO-leakage spike at the
+centre of the on-screen waterfall and the QMAP wideband display.
+100 Hz notch, irrelevant for Q65 / FT8 audio. Drop-in upgrade.
+
+---
+### Previous release — v1.1.1
 
 Download: **[iq-rx-bridge-1.1.1-setup.exe](https://github.com/n6nu/iq-rx-bridge/releases/latest/download/iq-rx-bridge-1.1.1-setup.exe)**
 
@@ -28,8 +39,6 @@ FunCube Pro+ V2 (192 kHz hardware), 256 kHz is no longer selectable
 because asking for it would force the bridge to upsample 192 -> 256
 with a fractional ratio, mismatching QMAP's frequency display.
 Drop-in upgrade.
-
----
 ### Previous release — v1.1.0
 
 Download: **[iq-rx-bridge-1.1.0-setup.exe](https://github.com/n6nu/iq-rx-bridge/releases/latest/download/iq-rx-bridge-1.1.0-setup.exe)**
