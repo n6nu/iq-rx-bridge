@@ -18,7 +18,19 @@ Author: **Andreas Junge, N6NU** &lt;<n6nu@arrl.net>&gt;.
 
 ---
 
-## Latest release — v1.0.4 (stable)
+## Latest release — v1.1.0
+
+Download: **[iq-rx-bridge-1.1.0-setup.exe](https://github.com/n6nu/iq-rx-bridge/releases/latest/download/iq-rx-bridge-1.1.0-setup.exe)**
+
+What's new in v1.1.0 (2026-05-05) -- UI refresh. Main window now
+fixed-size 400x640. Settings moved from a button to a top-level
+**Settings** menu (`Ctrl+,`). New **Linrad rate** readout in the
+State grid. Settings dialog reflowed side-by-side, with a new
+**Linrad IQ rate** combo (defaults to "96 kHz (QMAP Default)").
+Drop-in upgrade; 96 kHz wire format unchanged.
+
+---
+### Previous release — v1.0.4 (stable)
 
 Download: **[iq-rx-bridge-1.0.4-setup.exe](iq-rx-bridge-1.0.4-setup.exe)**
 
@@ -186,8 +198,6 @@ Successor to malachite-rx-bridge v0.99.x. Adds USB-HID CAT control
 of the FunCube Dongle Pro+ V1/V2 (auto-tune from WSJT-X dial) plus
 all the multi-instance support inherited from bridge-core
 (`--instance`, Linrad TCP/UDP port spinboxes, namespaced INI).
-
----
 
 ## Legacy: `malachite-rx-bridge`
 
