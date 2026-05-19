@@ -18,9 +18,25 @@ Author: **Andreas Junge, N6NU** &lt;<n6nu@arrl.net>&gt;.
 
 ---
 
-## Latest release -- v1.1.7
+## Latest release -- v1.2.7
 
-Download: **[iq-rx-bridge-1.1.7-setup.exe](https://github.com/n6nu/iq-rx-bridge/releases/latest/download/iq-rx-bridge-1.1.7-setup.exe)**
+Download: **[iq-rx-bridge-1.2.7-setup.exe](https://github.com/n6nu/iq-rx-bridge/releases/latest/download/iq-rx-bridge-1.2.7-setup.exe)**
+
+What's new in v1.2.7 (2026-05-19) -- Linrad bandwidth selector in
+Settings (96 / 128 / 192 / 256 kHz, automatically clamped to the
+device's input rate so a 192 kHz FCD doesn't see 256 in the dropdown).
+Changing it hot-restarts the running LinradServer in place — no bridge
+restart needed — and QMAP-in-Auto picks up the new rate via the Linrad
+TCP handshake (49812) within ~4 s. Status-panel layout cleanup: 12 pt
+font (no more clipped descenders), the audio peak meter folded into
+the State group, waterfall capped at 180 px with a visible bottom
+margin. "Auto EME subband" checkbox label shortened. No RF / decode /
+wire-format changes from v1.1.7.
+
+---
+### Previous release — v1.1.7
+
+Download: **[iq-rx-bridge-1.1.7-setup.exe](https://github.com/n6nu/iq-rx-bridge/releases/download/v1.1.7/iq-rx-bridge-1.1.7-setup.exe)**
 
 What's new in v1.1.7 (2026-05-15) -- Drop-in fix for a silent-failure
 bug on Win11 boxes where Hyper-V / WSL2 reserves the upper ephemeral
