@@ -18,9 +18,34 @@ Author: **Andreas Junge, N6NU** &lt;<n6nu@arrl.net>&gt;.
 
 ---
 
-## Latest release -- v1.2.7
+## Latest release -- v2.1.1
 
-Download: **[iq-rx-bridge-1.2.7-setup.exe](https://github.com/n6nu/iq-rx-bridge/releases/latest/download/iq-rx-bridge-1.2.7-setup.exe)**
+Download: **[iq-rx-bridge-2.1.1-setup.exe](https://github.com/n6nu/iq-rx-bridge/releases/download/v2.1.1/iq-rx-bridge-2.1.1-setup.exe)**
+(always the newest: [Releases page](https://github.com/n6nu/iq-rx-bridge/releases/latest);
+the whole bridge family and the user guide: <https://bridges.n6nu.org>)
+
+**If the window opens and closes at once:** the v2.1.x installers do not
+include the Microsoft Visual C++ runtime. Install the
+[Visual C++ Redistributable (x64)](https://aka.ms/vs/17/release/vc_redist.x64.exe)
+once and start the bridge again.
+
+What's new in v2.1.1 (2026-06-17) -- maintenance / licensing release:
+Help → About dialog (copyright, GPLv3 notice, license and source links),
+corrected third-party attribution, full author name in the Windows file
+properties. No functional change from v2.1.0. The complete GPLv3 source
+is attached to the release as `sdr-bridges-2.1.1-src.tar.gz`.
+
+What's new in v2.1.0 (2026-06-16) -- TCI (Thin Client Interface)
+RX support: run the bridge on another host and drive it from WSJT-X over
+the LAN, control and RX audio over one WebSocket. 256 kHz wideband I/Q
+feed for QMAP, auto EME sub-band, manual frequency entry with "Lock MHz",
+headless start. Download:
+**[iq-rx-bridge-2.1.0-setup.exe](https://github.com/n6nu/iq-rx-bridge/releases/download/v2.1.0/iq-rx-bridge-2.1.0-setup.exe)**
+
+---
+### v1.2.7
+
+Download: **[iq-rx-bridge-1.2.7-setup.exe](https://github.com/n6nu/iq-rx-bridge/releases/download/v1.2.7/iq-rx-bridge-1.2.7-setup.exe)**
 
 What's new in v1.2.7 (2026-05-19) -- Linrad bandwidth selector in
 Settings (96 / 128 / 192 / 256 kHz, automatically clamped to the
@@ -34,7 +59,7 @@ margin. "Auto EME subband" checkbox label shortened. No RF / decode /
 wire-format changes from v1.1.7.
 
 ---
-### Previous release — v1.1.7
+### v1.1.7
 
 Download: **[iq-rx-bridge-1.1.7-setup.exe](https://github.com/n6nu/iq-rx-bridge/releases/download/v1.1.7/iq-rx-bridge-1.1.7-setup.exe)**
 
@@ -50,7 +75,7 @@ avoid Qt's dual-stack ambiguity. No RF / decode changes.
 ---
 ### Previous release — v1.1.5
 
-Download: **[iq-rx-bridge-1.1.5-setup.exe](https://github.com/n6nu/iq-rx-bridge/releases/latest/download/iq-rx-bridge-1.1.5-setup.exe)**
+Download: **[iq-rx-bridge-1.1.5-setup.exe](https://github.com/n6nu/iq-rx-bridge/releases/download/v1.1.5/iq-rx-bridge-1.1.5-setup.exe)**
 
 What's new in v1.1.5 (2026-05-08) -- Quality release. New Help menu
 with User Guide (F1) opening the bundled beta-tester PDF, and
@@ -62,7 +87,7 @@ section. No RF / decode / wire-format changes. Drop-in upgrade.
 ---
 ### Previous release — v1.1.4
 
-Download: **[iq-rx-bridge-1.1.4-setup.exe](https://github.com/n6nu/iq-rx-bridge/releases/latest/download/iq-rx-bridge-1.1.4-setup.exe)**
+Download: **[iq-rx-bridge-1.1.4-setup.exe](https://github.com/n6nu/iq-rx-bridge/releases/download/v1.1.4/iq-rx-bridge-1.1.4-setup.exe)**
 
 What's new in v1.1.4 (2026-05-07) -- DC blocker on RF-direct receivers
 is now user-enableable from Settings. Default state unchanged (OFF
@@ -73,7 +98,7 @@ upgrade.
 ---
 ### Previous release — v1.1.3
 
-Download: **[iq-rx-bridge-1.1.3-setup.exe](https://github.com/n6nu/iq-rx-bridge/releases/latest/download/iq-rx-bridge-1.1.3-setup.exe)**
+Download: **[iq-rx-bridge-1.1.3-setup.exe](https://github.com/n6nu/iq-rx-bridge/releases/download/v1.1.3/iq-rx-bridge-1.1.3-setup.exe)**
 
 What's new in v1.1.3 (2026-05-06) -- DC blocker default-off for
 RF-direct receivers (HackRF / RTL-SDR / SDRplay / Pluto / AirSpy)
@@ -84,7 +109,7 @@ checkbox is grayed out for those radios. Sound-card-IQ sources
 ---
 ### Previous release — v1.1.2
 
-Download: **[iq-rx-bridge-1.1.2-setup.exe](https://github.com/n6nu/iq-rx-bridge/releases/latest/download/iq-rx-bridge-1.1.2-setup.exe)**
+Download: **[iq-rx-bridge-1.1.2-setup.exe](https://github.com/n6nu/iq-rx-bridge/releases/download/v1.1.2/iq-rx-bridge-1.1.2-setup.exe)**
 
 What's new in v1.1.2 (2026-05-05) -- DC blocker for zero-IF
 receivers. New "DC blocker (zero-IF spike removal)" checkbox in
@@ -93,7 +118,7 @@ centre of the on-screen waterfall and the QMAP wideband display.
 100 Hz notch, irrelevant for Q65 / FT8 audio. Drop-in upgrade.
 ### Previous release — v1.1.1
 
-Download: **[iq-rx-bridge-1.1.1-setup.exe](https://github.com/n6nu/iq-rx-bridge/releases/latest/download/iq-rx-bridge-1.1.1-setup.exe)**
+Download: **[iq-rx-bridge-1.1.1-setup.exe](https://github.com/n6nu/iq-rx-bridge/releases/download/v1.1.1/iq-rx-bridge-1.1.1-setup.exe)**
 
 What's new in v1.1.1 (2026-05-05) -- the IQ-rate combo now hides
 rates above the sound card's actual negotiated sample rate. On a
@@ -103,7 +128,7 @@ with a fractional ratio, mismatching QMAP's frequency display.
 Drop-in upgrade.
 ### Previous release — v1.1.0
 
-Download: **[iq-rx-bridge-1.1.0-setup.exe](https://github.com/n6nu/iq-rx-bridge/releases/latest/download/iq-rx-bridge-1.1.0-setup.exe)**
+Download: **[iq-rx-bridge-1.1.0-setup.exe](https://github.com/n6nu/iq-rx-bridge/releases/download/v1.1.0/iq-rx-bridge-1.1.0-setup.exe)**
 
 What's new in v1.1.0 (2026-05-05) -- UI refresh. Main window now
 fixed-size 400x640. Settings moved from a button to a top-level
