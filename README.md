@@ -23,7 +23,7 @@ Author: **Andreas Junge, N6NU** &lt;<n6nu@arrl.net>&gt;.
 V3 is close to release, and the current build is well ahead of the published
 release below:
 
-**[iq-rx-bridge-3.1.7-setup.exe](https://bridges.n6nu.org/beta/iq-rx-bridge-3.1.7-setup.exe)**
+**[iq-rx-bridge-3.1.8-setup.exe](https://bridges.n6nu.org/beta/iq-rx-bridge-3.1.8-setup.exe)**
 
 Prefer it: the v2.1.x installers were packaged without the Microsoft Visual
 C++ runtime, so on a clean Windows machine they start and close again
