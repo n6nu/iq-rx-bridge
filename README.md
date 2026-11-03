@@ -18,6 +18,22 @@ Author: **Andreas Junge, N6NU** &lt;<n6nu@arrl.net>&gt;.
 
 ---
 
+## Current build
+
+V3 is close to release, and the current build is well ahead of the published
+release below:
+
+**[iq-rx-bridge-3.1.7-setup.exe](https://bridges.n6nu.org/beta/iq-rx-bridge-3.1.7-setup.exe)**
+
+Prefer it: the v2.1.x installers were packaged without the Microsoft Visual
+C++ runtime, so on a clean Windows machine they start and close again
+immediately. This build carries the runtime with it. It also fixes a trap on
+a fresh install, where opening Settings and clicking OK raised the Linrad
+output by 20 dB on its own, and adds the LO offset and narrow-stream work
+plus the 13 cm band rows.
+
+---
+
 ## Latest release -- v2.1.1
 
 Download: **[iq-rx-bridge-2.1.1-setup.exe](https://github.com/n6nu/iq-rx-bridge/releases/download/v2.1.1/iq-rx-bridge-2.1.1-setup.exe)**
