@@ -9,10 +9,16 @@
 > use the latest `iq-rx-bridge-*-setup.exe`.
 
 Windows installer downloads for the **IQ RX Bridge** — a Qt6 C++
-application that pumps stereo IQ from a USB sound card into QMAP for
-wideband Q65 / FT8 reception. Sibling to the HackRF / RTL-SDR /
-SDRplay / AirSpy native-USB RX bridges, but for radios that expose IQ
-on a USB Audio Class device instead of a vendor-specific USB driver.
+application that pumps stereo IQ from a USB sound card into
+**WS-MAP** for wideband Q65 / FT8 reception. Sibling to the HackRF /
+RTL-SDR / SDRplay / AirSpy native-USB RX bridges, but for radios that
+expose IQ on a USB Audio Class device instead of a vendor-specific
+USB driver.
+
+The WS suite — **WS**, **WS-MAP** and **EME65** — lives at
+<https://wsjt-x-improved.sourceforge.io>, which is where most of this work went.
+
+<sub>Also works with WSJT-X, QMAP and MAP65.</sub>
 
 Author: **Andreas Junge, N6NU** &lt;<n6nu@arrl.net>&gt;.
 
